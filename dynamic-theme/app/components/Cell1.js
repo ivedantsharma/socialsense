@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
@@ -24,7 +25,14 @@ function Cell1() {
     <Container>
       <Heading>PROFILE IMAGE</Heading>
       <ImageBox>
-        {selectedImage && <img src={selectedImage} alt="Profile" />}
+        {selectedImage && (
+          <StyledImage
+            src={selectedImage}
+            alt="Profile"
+            layout="fill"
+            objectFit="cover"
+          />
+        )}
       </ImageBox>
       <ChangeHeading
         onClick={() => document.getElementById("imageInput").click()}
@@ -54,6 +62,7 @@ const Heading = styled.h4`
 `;
 
 const ImageBox = styled.div`
+  position: relative;
   width: 205px;
   height: 200px;
   border: 1px solid grey;
@@ -61,11 +70,10 @@ const ImageBox = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-  }
+`;
+
+const StyledImage = styled(Image)`
+  object-fit: cover;
 `;
 
 const ChangeHeading = styled.div`
