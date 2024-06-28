@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 
 function Cell1() {
+  const defaultImage = "/profile.jpeg";
   const [selectedImage, setSelectedImage] = useState(null);
 
   const handleImageChange = (event) => {
@@ -25,10 +26,17 @@ function Cell1() {
     <Container>
       <Heading>PROFILE IMAGE</Heading>
       <ImageBox>
-        {selectedImage && (
+        {selectedImage ? (
           <StyledImage
             src={selectedImage}
             alt="Profile"
+            layout="fill"
+            objectFit="cover"
+          />
+        ) : (
+          <StyledImage
+            src={defaultImage}
+            alt="Default Profile"
             layout="fill"
             objectFit="cover"
           />
@@ -63,8 +71,8 @@ const Heading = styled.h4`
 
 const ImageBox = styled.div`
   position: relative;
-  width: 205px;
-  height: 200px;
+  width: 275px;
+  height: 250px;
   border: 1px solid grey;
   display: flex;
   justify-content: center;
